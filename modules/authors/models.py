@@ -1,7 +1,7 @@
 from django.db import models
 
 # Create your models here.
-class Authors(models.Model):
+class Author(models.Model):
     CATEGORIES = {
         ("ACC","Action"),
         ("ADV","Adventure"),
@@ -19,12 +19,15 @@ class Authors(models.Model):
         ("SCI","Science"),
         ("THR","Thriller"),
             }
-    idAuthor = models.AutoField(primary_key=True)
-    name = models.CharField(max_lenght=50)
-    lastname = models.CharField(max_lenght=50)
-    nationality = models.CharField(max_lenght=50)
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=100)
+    lastname = models.CharField(max_length=10)
+    nationality = models.CharField(max_length=50)
     bio = models.TextField()
-    sex = models.CharField(max_lenght=10)
-    category = category = models.CharField(max_length=30,choices=CATEGORIES)
+    sex = models.CharField(choices=(('F','Female'),('M','Male')), max_length=16,blank=True)
+    category = category = models.CharField(max_length=100,choices=CATEGORIES)
     age = models.IntegerField()
-    alive = models.BooleanField()
+    alive = models.BooleanField(default=True)
+
+    def __str__(self):
+        return "Author: %s %s" % (self.name,self.lastname)

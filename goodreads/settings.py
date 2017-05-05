@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'modules.books',
     'modules.authors',
     'modules.users',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -126,3 +127,5 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(os.getcwd(),'static')]
+
+AUTH_USER_MODEL = "users.User"

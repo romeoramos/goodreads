@@ -23,7 +23,7 @@ class Book(models.Model):
         }
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100)
-    author = models.ForeignKey(Author,on_delete=models.CASCADE)
+    author = models.ForeignKey(Author,on_delete=models.CASCADE,related_name='author_books')
     ISBN = models.CharField(max_length=100,unique=True)
     publication_date = models.DateField(null=True)
     cover = models.URLField(blank=True,null=True)
@@ -35,6 +35,6 @@ class Book(models.Model):
         return "Book: %s" % (self.name)
 
 class Comments(models.Model):
-    usuario = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
-    book = models.ForeignKey(Book,on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
+    book = models.ForeignKey(Book,on_delete=models.CASCADE,related_name='book_comments')
     comment = models.TextField()

@@ -15,6 +15,22 @@ class ListAuthor(APIView):
         return Response(serializer.data,status=status.HTTP_200_OK)
 
     def post(self,request):
+        """
+        Create a new Author
+
+        ---
+
+        Parameters:
+            - name
+                type: string
+                paramType: form
+                required: True
+            - lastname
+                type: string
+                paramType: form
+                required: True
+
+        """
         serializer = AuthorSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()

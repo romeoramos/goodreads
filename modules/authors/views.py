@@ -5,10 +5,13 @@ from rest_framework import status
 from django.http import Http404
 from .models import Author
 from .serializers import AuthorSerializer
+from rest_framework.permissions import IsAuthenticated
+from oauth2_provider.ext.rest_framework import TokenHasReadWriteScope
 # Create your views here.
 
 class ListAuthor(APIView):
-
+    permission_classes = (TokenHasReadWriteScope,IsAuthenticated)
+    
     def get(self,request):
         authors = Author.objects.all()
         serializer = AuthorSerializer(authors,many=True)

@@ -25,7 +25,7 @@ class Author(models.Model):
     nationality = models.CharField(max_length=50)
     bio = models.TextField()
     sex = models.CharField(choices=(('F','Female'),('M','Male')), max_length=16,blank=True)
-    category = category = models.CharField(max_length=100,choices=CATEGORIES)
+    category = models.CharField(max_length=100,choices=CATEGORIES)
     age = models.IntegerField()
     alive = models.BooleanField(default=True)
 
